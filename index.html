@@ -1,0 +1,96 @@
+index.html
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8" />
+    <title>Map Animation</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet" />
+    <link href="./styles.css" rel="stylesheet" />
+</head>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+
+}
+
+
+.map-overlay {
+  position: absolute;
+  left: 0;
+  color: #000;
+  padding: 10px;
+}
+</style>
+
+
+<body>
+    <div id="map"></div>
+    <div class="map-overlay top">
+        <button style="font-size: 2em" onclick="move()">
+            Show stops between RVS college to coimbatore
+        </button>
+    </div>
+    <script src="./mapanimation.js"></script>
+</body>
+<script>
+// This array contains the coordinates for all bus stops between MIT and Harvard
+const busStops = [
+  [77.12258,11.02623],
+  [77.08104,11.01106],
+  [77.04637,11.00365],
+[76.99593,10.99796],
+[76.98401,11.01151],
+[76.97754,11.01678],
+[76.96801,11.01735],];
+  
+
+// TODO: add your own access token
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2VudGhpbGt1cHB1c3dhbXkiLCJhIjoiY2twbTlkMzBlMDQxYjJ2bXcwcG5xdnhzNCJ9.mmPcPQN_3raRRh8Q0S1kEw';
+
+
+// This is the map instance
+let map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v11',
+  center: ([76.98401,11.01151]),
+  zoom: 14,
+});
+
+
+// TODO: add a marker to the map at the first coordinates in the array busStops. The marker variable should be named "marker"
+var marker= new mapboxgl.Marker()
+            .setLngLat([76.98401,11.01151],)
+            .addTo(map);
+// counter here represents the index of the current bus stop
+let counter = 0;
+function move() {
+  // TODO: move the marker on the map every 1000ms. Use the function marker.setLngLat() to update the marker coordinates
+  // Use counter to access bus stops in the array busStops
+  // Make sure you call move() after you increment the counter.
+  setTimeout(()=> {
+    if (counter>=busStops.length) return;
+    marker.setLngLat(busStops[counter]);
+    counter++;
+    move();
+    },1000);
+}
+
+
+// Do not edit code past this point
+if (typeof module !== 'undefined') {
+  module.exports = { move };
+}
+</script>
+</html>
+
