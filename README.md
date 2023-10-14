@@ -1,4 +1,4 @@
-# Maps
+# Mapping
 
 This is an HTML document that creates a map animation using Mapbox GL JS. Here's a description of its components:
 
@@ -22,6 +22,6 @@ step 3. JavaScript:
 step 4. Mapbox Access Token:
    - The Mapbox access token (mapboxgl.accessToken) is provided. You would typically replace this with your own Mapbox access token.
     
-Future Impelementations of the code
+Future Improvements
 
 Overall, this HTML document creates an interactive map with a button that triggers an animation showing the movement of a marker (simulating a bus) between specified bus stops on the map. The animation uses Mapbox GL JS for mapping functionality.
